@@ -1,4 +1,4 @@
-use binread::{until_eof, BinRead, BinReaderExt, NullString};
+use binrw::{until_eof, BinRead, BinReaderExt, NullString};
 use std::io::Cursor;
 
 #[derive(BinRead)]
