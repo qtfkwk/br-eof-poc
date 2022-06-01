@@ -70,11 +70,6 @@ fn main() {
     // Try to create a group of pets...
     let mut reader = Cursor::new(b"DOG\x02\x00\x01\x00\x12\0\0Rudy\0CAT\0\0Fluffy\0DOG\x01\x00\x45\0\0Killer\0");
     let pets: Pets = reader.read_ne().unwrap();
-    // Blows up with:
-    // thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: EnumErrors { pos:
-    // 0x2A, variant_errors: [("Dog", Io(Error { kind: UnexpectedEof, message: "failed to fill
-    // whole buffer" })), ("Cat", Io(Error { kind: UnexpectedEof, message: "failed to fill whole
-    // buffer" }))] }', src/main.rs:72:39
     assert_eq!(pets.list.len(), 3);
     if let Animal::Dog(dog) = &pets.list[0] {
         assert_eq!(dog.bone_piles, &[0x1, 0x12]);
